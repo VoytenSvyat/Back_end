@@ -5,9 +5,7 @@ class Account {
     private final String iban;
     private final String owner;
     private double balance;
-    private final Lock lock = new ReentrantLock(); // ReentrantLock — это механизм блокировки в Java,
-    // который позволяет управлять доступом к общему ресурсу в многопоточной среде.
-    // Он является альтернативой synchronized, но предоставляет больше гибкости.
+    private final Lock lock = new ReentrantLock();
 
     public Account(String iban, String owner, double balance) {
         this.iban = iban;
