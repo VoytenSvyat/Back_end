@@ -18,7 +18,7 @@ public class TaskBoardImpl2 implements TaskBoard {
             }
         }
         tasks.add(task);
-        notifyAll(); // Будим потоки-потребители
+        notifyAll(); // Будим
     }
 
     @Override
@@ -31,7 +31,7 @@ public class TaskBoardImpl2 implements TaskBoard {
             }
         }
         Runnable task = tasks.removeFirst();
-        notifyAll(); // Будим потоки-производители
+        notifyAll(); // Будим
         return task;
     }
 }
