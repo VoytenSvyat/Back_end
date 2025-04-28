@@ -1,10 +1,14 @@
 package com.ait;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -24,9 +28,12 @@ public class Main {
             System.out.println(json);
 
         Person person = mapper.readValue(new File("p1.json"), Person.class);
-        Person[] people1 = mapper.readValue(new File("p2.json"), Person[].class);
+        // Person[] people1 = mapper.readValue(new File("p2.json"), Person[].class);
+        // new TypeReference<HashSet<Person>>() используеться для переопределения типа дженерика в ArrayList либо в HashSet
+        HashSet<Person> people1 = mapper.readValue(new File("p2.json"), new TypeReference<HashSet<Person>>() {});
         System.out.println("person:" + person);
-        System.out.println(Arrays.toString(people1));
+       // System.out.println(Arrays.toString(people1));
+        System.out.println(people1);
 
 
     }
