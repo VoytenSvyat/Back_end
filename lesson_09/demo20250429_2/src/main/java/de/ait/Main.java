@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        URI uri = new URI("https://jsonplaceholder.typicode.com/comments");
+        URI uri = new URI("https://jsonplaceholder.typicode.com/posts");
         RequestEntity<String> request = new RequestEntity<>(HttpMethod.GET, uri);
         ResponseEntity<ArrayList<PostDto>> response = restTemplate.exchange(request, new ParameterizedTypeReference<ArrayList<PostDto>>() {
         }); // - получение листа
