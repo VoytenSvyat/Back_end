@@ -5,6 +5,13 @@ import org.springframework.http.*;
 import java.util.Base64;
 
 public class Main {
+    /*
+    # 1
+Ваша задача написать используя API https://api.imagga.com эндпоинт /text написать программу которая распознает текст на картинке. Для тестирования можно использовать
+картинку https://cdn.javarush.com/images/article/431abcb1-71aa-4137-97bd-ad26d7aa0e00/800.jpeg
+Результат для этой картинки строка: "ОТВЕЧАЮ В СПРИНГЕ ЭТО УЖЕ ЕСТЬ"
+
+     */
     private static final String API_KEY = "acc_0a78103d7301b39";
     private static final String API_SECRET = "ec13b05848c3b035011fdf1d758d9ccd";
     private static final String IMAGE_URL = "https://cdn.javarush.com/images/article/431abcb1-71aa-4137-97bd-ad26d7aa0e00/800.jpeg";
