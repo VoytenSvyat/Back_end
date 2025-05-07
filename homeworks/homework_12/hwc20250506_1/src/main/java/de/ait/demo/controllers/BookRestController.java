@@ -14,9 +14,14 @@ public class BookRestController {
     public List<Book> getBook(){
         List<Book> bookList = new ArrayList<>();
         bookList.add(new Book("Harry Potter und der Stein der Weisen", "Joanne K. Rowling.", 1997 ));
-                bookList.add(new Book("Harry Potter und die Kammer des Schreckens", "Joanne K. Rowling.", 1998 ));
-                bookList.add(new Book("Harry Potter und der Gefangene von Askaban", "Joanne K. Rowling.", 1999 ));
+        bookList.add(new Book("Harry Potter und die Kammer des Schreckens", "Joanne K. Rowling.", 1998 ));
+        bookList.add(new Book("Harry Potter und der Gefangene von Askaban", "Joanne K. Rowling.", 1999 ));
 
-                return bookList;
+        return bookList;
     }
+    @RequestMapping(value = "/books", method = RequestMethod.PUT)
+    public void updateBook(){
+        System.out.println("put!!!!");
+    }
+
 }

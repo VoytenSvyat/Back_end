@@ -1,5 +1,6 @@
 package de.ait.demo.controllers;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,7 @@ import java.util.List;
 @RestController
 public class FilmRestController {
 
-    @RequestMapping(value = "/films", method = RequestMethod.GET)
+    @GetMapping("/films")
     public List<Film> getFilm(){
         List<Film> filmList = new ArrayList<>();
         filmList.add(new Film("The Shawshank Redemption", "Drama", 1994));
