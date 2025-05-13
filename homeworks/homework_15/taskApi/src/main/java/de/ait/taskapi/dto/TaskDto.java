@@ -1,14 +1,13 @@
-package de.ait.taskapi.model;
+package de.ait.taskapi.dto;
 
+import de.ait.taskapi.model.Priority;
 import lombok.*;
 
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode(of="id")
-public class Task {
-    @Setter private Long id;
+public class TaskDto {
     private String description;
     private Priority priority;
 }

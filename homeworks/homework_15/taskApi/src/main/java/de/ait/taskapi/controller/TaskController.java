@@ -1,8 +1,10 @@
 package de.ait.taskapi.controller;
 
+import de.ait.taskapi.dto.TaskDto;
 import de.ait.taskapi.model.Task;
 import de.ait.taskapi.repository.TaskDB;
 import de.ait.taskapi.repository.TaskRepository;
+import de.ait.taskapi.service.TaskService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,10 +16,11 @@ import java.util.Scanner;
 
 // @AllArgsConstructor
 @RestController
-
+@AllArgsConstructor
 public class TaskController {
-
+    @Qualifier("taskDB")
     private final TaskRepository repository;
+    private final TaskService service;
 
     private  Scanner scanner;
 
@@ -26,22 +29,19 @@ public class TaskController {
         this.scanner = scanner;
     }
 
-    public TaskController(@Qualifier("taskDB") TaskRepository repository) {
-        this.repository = repository;
 
-    }
 
     @GetMapping("/tasks")
-    public List<Task> getTasks(){
+    public List<TaskDto> getTasks(){
         System.out.println("input");
         String s = scanner.nextLine();
         System.out.println(s);
-        return repository.findAll();
+        return service.getAllTasks();
     }
 
     @GetMapping("tasks/{id}")
-    public Task findById(@PathVariable("id") Long taskID){
-        return repository.findById(taskID);
+    public TaskDto findById(@PathVariable("id") Long taskId){
+        return service.getTaskById(taskId);
     }
 
     @PostMapping("/tasks")
