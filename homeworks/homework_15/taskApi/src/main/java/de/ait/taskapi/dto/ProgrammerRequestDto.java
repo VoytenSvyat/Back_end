@@ -5,7 +5,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
-@ToString
-public class ProgrammerDto {
+public class ProgrammerRequestDto {
         private String name;
     }

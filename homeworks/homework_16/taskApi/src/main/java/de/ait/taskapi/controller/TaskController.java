@@ -69,8 +69,13 @@ public class TaskController {
     }
 
     @DeleteMapping("/tasks/{id}")
-    public Task deleteTask(@PathVariable(name = "id") Long taskID){
-        return repository.deleteById(taskID);
+    public ResponseEntity<Task> deleteTask(@PathVariable(name = "id") Long taskID){
+        try {
+            return ResponseEntity.ok(repository.deleteById(taskID));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
 }
