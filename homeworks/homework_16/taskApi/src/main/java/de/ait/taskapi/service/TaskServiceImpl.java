@@ -6,6 +6,7 @@ import de.ait.taskapi.mappers.TaskMapper;
 import de.ait.taskapi.model.Task;
 import de.ait.taskapi.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
+    @Autowired
     private final TaskRepository repository;
     private final TaskMapper mapper;
 

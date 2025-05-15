@@ -37,12 +37,8 @@ public  class TaskDB implements TaskRepository{
     public List<Task> findAll(){
         return map.values().stream().toList();
     }
-
+    // или значение Task или null
     public Task findById(Long id){
-        if (id<1 || id>lastId){
-            throw new RuntimeException("id not found"); // IdNotFoundException
-        }
-
         return map.get(id);
 
     }

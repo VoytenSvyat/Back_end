@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -38,13 +39,13 @@ public class TaskController {
     }
     @GetMapping("/tasks")
     public ResponseEntity<List<TaskResponseDto>> getTasks(){
-        // return ResponseEntity.ok(service.getAllTasks());
+        return ResponseEntity.ok(service.getAllTasks());
 
-        List<TaskResponseDto> allTasks = service.getAllTasks();
-        HttpHeaders headers = new HttpHeaders(); // заголовки HTTP
-        headers.add("X-Task-Size", String.valueOf(allTasks.size()));
-        headers.add("X-Task-Hello", "hello from server");
-        return new ResponseEntity<>(allTasks,headers, HttpStatus.OK);
+       // List<TaskResponseDto> allTasks = service.getAllTasks();
+        // HttpHeaders headers = new HttpHeaders(); // заголовки HTTP
+       // headers.add("X-Task-Size", String.valueOf(allTasks.size()));
+       // headers.add("X-Task-Hello", "hello from server");
+        // return new ResponseEntity<>(allTasks,headers, HttpStatus.OK);
 
     }
 
@@ -59,13 +60,14 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public ResponseEntity<Task> addTask(@RequestBody Task task){
-        Task saved = repository.save(task);
-        try {
-            return ResponseEntity.created(new URI("http://localhost:8081/tasks/"+saved.getId())).body(saved);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+    public ResponseEntity<TaskResponseDto> createTask(@RequestBody TaskRequestDto task){
+        TaskResponseDto savedTask = service.createTask(task);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedTask.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(savedTask);
     }
 
     @DeleteMapping("/tasks/{id}")

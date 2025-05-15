@@ -1,6 +1,7 @@
 package de.ait.taskapi.controller;
 
 import de.ait.taskapi.dto.ProgrammerRequestDto;
+import de.ait.taskapi.dto.ProgrammerResponseDto;
 import de.ait.taskapi.model.Programmer;
 import de.ait.taskapi.model.Task;
 import de.ait.taskapi.repository.ProgrammerRepository;
@@ -24,11 +25,8 @@ public class ProgrammerController {
 
 
     @GetMapping("/programmers")
-    public ResponseEntity<List<ProgrammerRequestDto>> getProgrammers(){
-        List<ProgrammerRequestDto> allProgrammers = service.getAllProgrammers();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Programmer-Size", String.valueOf(allProgrammers.size()));
-       return new ResponseEntity<>(allProgrammers, headers, HttpStatus.OK);
+    public List<ProgrammerResponseDto> getProgrammers(){
+        return service.getAllProgrammers();
     }
 
     @GetMapping("/programmers/{id}")

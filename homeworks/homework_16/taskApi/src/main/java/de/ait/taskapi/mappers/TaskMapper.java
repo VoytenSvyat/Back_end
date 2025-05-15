@@ -12,4 +12,5 @@ import java.util.List;
 public interface TaskMapper {
     TaskResponseDto toResponseDto(Task task);
     List<TaskResponseDto> toResponseDtoList(List<Task> task);
+
 }
