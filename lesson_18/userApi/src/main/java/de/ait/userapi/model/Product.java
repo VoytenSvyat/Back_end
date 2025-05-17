@@ -6,12 +6,10 @@ import lombok.*;
 import java.math.BigDecimal;
 
 
-@AllArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-@ToString
-
 @Entity
 @Table(name = "products")
 public class Product {
@@ -23,4 +21,8 @@ public class Product {
     private String title;
     @Column(name = "price")
     private BigDecimal price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
